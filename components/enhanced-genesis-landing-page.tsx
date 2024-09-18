@@ -24,7 +24,8 @@ import { Switch } from "@/components/ui/switch"
 import { Slider } from "@/components/ui/slider"
 
 // Photo Gallery Component
-const PhotoGallery = ({ photos, isOpen, onClose, initialPhotoIndex }) => {
+
+const PhotoGallery: React.FC<{ photos: { src: string; alt: string; title: string; description: string }[]; isOpen: boolean; onClose: () => void; initialPhotoIndex: number }> = ({ photos, isOpen, onClose, initialPhotoIndex }) => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(initialPhotoIndex)
 
   useEffect(() => {
@@ -32,14 +33,14 @@ const PhotoGallery = ({ photos, isOpen, onClose, initialPhotoIndex }) => {
   }, [initialPhotoIndex])
 
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => { // Explicitly type 'e' as KeyboardEvent
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
   }, [onClose])
 
-  const handleOutsideClick = useCallback((e) => {
+  const handleOutsideClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => { // Use React.MouseEvent with HTMLDivElement
     if (e.target === e.currentTarget) onClose()
   }, [onClose])
 
@@ -105,7 +106,7 @@ const PhotoGallery = ({ photos, isOpen, onClose, initialPhotoIndex }) => {
 }
 
 // Enhanced Style Guide Component
-const ColorSwatch = ({ color, name, hex }) => (
+const ColorSwatch: React.FC<{ color: string; name: string; hex: string }> = ({ color, name, hex }) => (
   <div className="flex flex-col items-center">
     <div className={`w-20 h-20 rounded-full ${color}`}></div>
     <p className="mt-2 text-sm font-medium">{name}</p>
@@ -334,7 +335,7 @@ export function EnhancedGenesisLandingPageComponent() {
     }
   ]
 
-  const openGallery = (index) => {
+  const openGallery = (index: number) => { // Explicitly type 'index' as number
     setInitialPhotoIndex(index)
     setIsGalleryOpen(true)
   }
@@ -556,7 +557,7 @@ export function EnhancedGenesisLandingPageComponent() {
           <h2 className="text-5xl font-light mb-8">The Future of Luxury</h2>
           <p className="text-xl max-w-3xl font-light">
             Genesis represents the pinnacle of automotive luxury, blending cutting-edge technology with timeless
-            elegance. Our commitment to innovation drives us to redefine what's possible in the world of premium
+            elegance. Our commitment to innovation drives us to redefine what is possible in the world of premium
             vehicles.
           </p>
         </section>
@@ -675,7 +676,7 @@ export function EnhancedGenesisLandingPageComponent() {
             <div className="md:w-1/2">
               <h3 className="text-3xl font-light mb-4">Athletic Elegance</h3>
               <p className="text-lg font-light">
-                Our design philosophy, "Athletic Elegance," embodies the harmony between dynamic performance 
+                Our design philosophy, Athletic Elegance, embodies the harmony between dynamic performance 
                 and sophisticated luxury. Every curve and line is purposefully crafted to create a sense of 
                 motion even when the vehicle is stationary.
               </p>
