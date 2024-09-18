@@ -7,7 +7,6 @@ import Image from 'next/image'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
-import { motion } from "framer-motion"
 import {
   Dialog,
   DialogContent,
@@ -97,8 +96,8 @@ const PhotoGallery: React.FC<{ photos: { src: string; alt: string; title: string
           </Button>
         </div>
         <div className="mt-4 text-white text-left">
-          <h3 className="text-2xl font-light mb-2">{currentPhoto.title}</h3>
-          <p className="text-lg font-light">{currentPhoto.description}</p>
+          <h3 className="text-2xl font-normal mb-2">{currentPhoto.title}</h3>
+          <p className="text-lg font-normal">{currentPhoto.description}</p>
         </div>
       </div>
     </div>
@@ -117,7 +116,7 @@ const ColorSwatch: React.FC<{ color: string; name: string; hex: string }> = ({ c
 const EnhancedStyleGuide = () => {
   return (
     <div className="p-6 bg-background text-foreground">
-      <h2 className="text-3xl font-light mb-6">Enhanced Style Guide</h2>
+      <h2 className="text-3xl font-normal mb-6">Enhanced Style Guide</h2>
       
       <Tabs defaultValue="colors" className="w-full">
         <TabsList className="mb-4">
@@ -157,10 +156,10 @@ const EnhancedStyleGuide = () => {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Headings</h3>
-                  <h1 className="text-4xl font-light">Heading 1</h1>
-                  <h2 className="text-3xl font-light">Heading 2</h2>
-                  <h3 className="text-2xl font-light">Heading 3</h3>
-                  <h4 className="text-xl font-light">Heading 4</h4>
+                  <h1 className="text-4xl font-normal">Heading 1</h1>
+                  <h2 className="text-3xl font-normal">Heading 2</h2>
+                  <h3 className="text-2xl font-normal">Heading 3</h3>
+                  <h4 className="text-xl font-normal">Heading 4</h4>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Body Text</h3>
@@ -170,7 +169,7 @@ const EnhancedStyleGuide = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Font Weights</h3>
-                  <p className="font-light">Light (300)</p>
+                  <p className="font-normal">Light (300)</p>
                   <p className="font-normal">Regular (400)</p>
                   <p className="font-medium">Medium (500)</p>
                   <p className="font-semibold">Semibold (600)</p>
@@ -340,43 +339,17 @@ export function EnhancedGenesisLandingPageComponent() {
     setIsGalleryOpen(true)
   }
 
-  const headlineVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.2,
-      },
-    },
-  }
-
-  const ctaVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.6,
-      },
-    },
-  }
-
   if (!mounted) {
     return null
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-white transition-colors duration-300 font-light">
+    <div className="min-h-screen flex flex-col bg-gray-900 text-white transition-colors duration-300 font-normal">
       {/* Main Navigation */}
       <nav className="bg-gray-900 text-white fixed w-full z-50 top-0 left-0 right-0 border-b border-gray-700 transition-colors duration-300">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-6">
-            <div className="w-48 h-12 relative">
+            <div className="w-32 h-8 relative">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-genesis-7mmQ262umruvPDO8MBuwUVCx54LwiK.png"
                 alt="Genesis Logo"
@@ -385,11 +358,10 @@ export function EnhancedGenesisLandingPageComponent() {
                 className="w-full"
               />
             </div>
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-8">
               <Link href="#" className="hover:text-primary transition-colors">Models</Link>
               <Link href="#" className="hover:text-primary transition-colors">Experience</Link>
-              <Link href="#" className="hover:text-primary transition-colors">About</Link>
-              <Link href="#" className="hover:text-primary transition-colors">Contact</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Electric</Link>
               <Dialog>
                 <DialogTrigger asChild>
                   <button className="hover:text-primary transition-colors">Style Guide</button>
@@ -441,11 +413,11 @@ export function EnhancedGenesisLandingPageComponent() {
             <Link href="#" className="hover:text-primary transition-colors">Contact</Link>
             <Dialog>
               <DialogTrigger asChild>
-                <button className="hover:text-primary transition-colors">Style Guide</button>
+                <button className="hover:text-primary transition-colors">Style-Guide</button>
               </DialogTrigger>
               <DialogContent className="bg-gray-900 text-white border-gray-700 max-w-4xl max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
-                  <DialogTitle>Style Guide</DialogTitle>
+                  <DialogTitle>Style-Guide</DialogTitle>
                   <DialogDescription>
                     Explore the design elements of our website.
                   </DialogDescription>
@@ -477,75 +449,34 @@ export function EnhancedGenesisLandingPageComponent() {
 
       {/* Hero Section with Parallax */}
       <section className="relative h-screen overflow-hidden pt-16">
-        {/* Sky layer */}
-        <div
-          className="absolute inset-0 z-0 cursor-pointer"
-          style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
-          }}
-          onClick={() => openGallery(0)}
-        >
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gene-stoEpGHROtvOKJrpBvhN85rwQ3wIzR.jpg"
-            alt="Stormy sky over desert"
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/background.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
-        {/* Background cars layer */}
+
+        {/* Overlay Layer */}
+        <div className="absolute inset-0 bg-black opacity-10" /> {/* 10% black overlay */}
+        
+        {/* Content Layer with Parallax Effect */}
         <div
-          className="absolute inset-0 z-10 cursor-pointer"
-          style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
-          }}
-          onClick={() => openGallery(0)}
+          className="relative z-30 h-full flex items-center justify-center"
+          style={{ transform: `translateY(${scrollY * 0.5}px)` }} // Adjust speed here
         >
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gene-stoEpGHROtvOKJrpBvhN85rwQ3wIzR.jpg"
-            alt="Genesis cars in the background"
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
-        </div>
-        {/* Foreground car layer */}
-        <div
-          className="absolute inset-0 z-20 cursor-pointer"
-          style={{
-            transform: `translateY(${scrollY * 0.3}px)`,
-          }}
-          onClick={() => openGallery(0)}
-        >
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gene-stoEpGHROtvOKJrpBvhN85rwQ3wIzR.jpg"
-            alt="Genesis GV60 Magma concept in the foreground"
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
-        </div>
-        {/* Content layer */}
-        <div className="relative z-30 h-full flex items-center justify-center">
           <div className="text-center text-white">
-            <motion.h1
-              className="text-6xl md:text-8xl font-light mb-6"
-              initial="hidden"
-              animate="visible"
-              variants={headlineVariants}
-            >
-              Driven by Innovation
-            </motion.h1>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={ctaVariants}
-            >
-              <Button className="bg-white text-gray-900 px-8 py-3 text-lg font-light hover:bg-gray-100 transition-colors duration-300 rounded-none relative overflow-hidden group">
-                <span className="relative z-10">Explore Genesis</span>
-                <span className="absolute inset-0 bg-gray-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </Button>
-            </motion.div>
+            <h1 className="text-6xl md:text-8xl font-medium mb-6">Driven by Innovation</h1>
+            <Button className="bg-white text-gray-900 px-8 py-3 text-lg font-normal hover:bg-gray-100 transition-colors duration-300 rounded-none relative overflow-hidden group">
+              <span className="relative z-10">Explore Genesis</span>
+              <span className="absolute inset-0 bg-gray-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </Button>
           </div>
         </div>
       </section>
@@ -554,8 +485,8 @@ export function EnhancedGenesisLandingPageComponent() {
       <main className="container mx-auto px-4 py-16 flex-grow">
         {/* About Section */}
         <section className="mb-32">
-          <h2 className="text-5xl font-light mb-8">The Future of Luxury</h2>
-          <p className="text-xl max-w-3xl font-light">
+          <h2 className="text-5xl font-medium mb-8">The Future of Luxury</h2>
+          <p className="text-xl max-w-3xl font-normal">
             Genesis represents the pinnacle of automotive luxury, blending cutting-edge technology with timeless
             elegance. Our commitment to innovation drives us to redefine what is possible in the world of premium
             vehicles.
@@ -564,7 +495,7 @@ export function EnhancedGenesisLandingPageComponent() {
 
         {/* Gallery Section */}
         <section className="mb-32">
-          <h2 className="text-5xl font-light mb-12">Our Models</h2>
+          <h2 className="text-5xl font-medium mb-12">Our Models</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="relative h-96 overflow-hidden group cursor-pointer" onClick={() => openGallery(1)}>
               <div className="absolute inset-0">
@@ -577,7 +508,7 @@ export function EnhancedGenesisLandingPageComponent() {
                 />
               </div>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-6 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                <h3 className="text-white text-3xl font-light">G70</h3>
+                <h3 className="text-white text-3xl font-medium">G70</h3>
               </div>
             </div>
             <div className="relative h-96 overflow-hidden group cursor-pointer" onClick={() => openGallery(2)}>
@@ -591,7 +522,7 @@ export function EnhancedGenesisLandingPageComponent() {
                 />
               </div>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-6 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                <h3 className="text-white text-3xl font-light">G80</h3>
+                <h3 className="text-white text-3xl font-medium">G80</h3>
               </div>
             </div>
             <div className="relative h-96 overflow-hidden group cursor-pointer" onClick={() => openGallery(3)}>
@@ -605,7 +536,7 @@ export function EnhancedGenesisLandingPageComponent() {
                 />
               </div>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-6 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                <h3 className="text-white text-3xl font-light">GV80</h3>
+                <h3 className="text-white text-3xl font-medium">GV80</h3>
               </div>
             </div>
           </div>
@@ -630,9 +561,9 @@ export function EnhancedGenesisLandingPageComponent() {
           </div>
           <div className="relative z-10 h-full flex items-center justify-center">
             <div className="text-center text-white bg-black bg-opacity-50 p-8">
-              <h2 className="text-4xl md:text-6xl font-light mb-4">Experience the Future</h2>
-              <p className="text-xl mb-6 font-light">Step into a world where luxury meets innovation</p>
-              <Button className="bg-white text-gray-900 px-8 py-3 text-lg font-light hover:bg-gray-100 transition-colors duration-300 rounded-none">
+              <h2 className="text-4xl md:text-6xl font-medium mb-4">Experience the Future</h2>
+              <p className="text-xl mb-6 font-normal">Step into a world where luxury meets innovation</p>
+              <Button className="bg-white text-gray-900 px-8 py-3 text-lg font-normal hover:bg-gray-100 transition-colors duration-300 rounded-none">
                 Discover More
               </Button>
             </div>
@@ -641,18 +572,18 @@ export function EnhancedGenesisLandingPageComponent() {
 
         {/* Innovation Section */}
         <section className="mb-32">
-          <h2 className="text-5xl font-light mb-12">Innovative Features</h2>
+          <h2 className="text-5xl font-medium mb-12">Innovative Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-3xl font-light mb-4">Advanced Driver Assistance</h3>
-              <p className="text-lg font-light">
+              <h3 className="text-3xl font-normal mb-4">Advanced Driver Assistance</h3>
+              <p className="text-lg font-normal">
                 Experience the future of driving with our state-of-the-art driver assistance technologies, 
                 including adaptive cruise control, lane keeping assist, and autonomous emergency braking.
               </p>
             </div>
             <div>
-              <h3 className="text-3xl font-light mb-4">Sustainable Luxury</h3>
-              <p className="text-lg font-light">
+              <h3 className="text-3xl font-normal mb-4">Sustainable Luxury</h3>
+              <p className="text-lg font-normal">
                 Our commitment to sustainability is reflected in our use of eco-friendly materials and 
                 development of electric and hybrid powertrains without compromising on luxury.
               </p>
@@ -662,7 +593,7 @@ export function EnhancedGenesisLandingPageComponent() {
 
         {/* Design Philosophy Section */}
         <section className="mb-32">
-          <h2 className="text-5xl font-light mb-12">Design Philosophy</h2>
+          <h2 className="text-5xl font-normal mb-12">Design Philosophy</h2>
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2 cursor-pointer" onClick={() => openGallery(5)}>
               <Image
@@ -674,8 +605,8 @@ export function EnhancedGenesisLandingPageComponent() {
               />
             </div>
             <div className="md:w-1/2">
-              <h3 className="text-3xl font-light mb-4">Athletic Elegance</h3>
-              <p className="text-lg font-light">
+              <h3 className="text-3xl font-medium mb-4">Athletic Elegance</h3>
+              <p className="text-lg font-normal">
                 Our design philosophy, Athletic Elegance, embodies the harmony between dynamic performance 
                 and sophisticated luxury. Every curve and line is purposefully crafted to create a sense of 
                 motion even when the vehicle is stationary.
@@ -686,16 +617,18 @@ export function EnhancedGenesisLandingPageComponent() {
 
         {/* Newsletter Section */}
         <section className="mb-32">
-          <h2 className="text-5xl font-light mb-12">Stay Informed</h2>
-          <form className="max-w-2xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-4">
-              <Input
-                type="email"
-                placeholder="Your email address"
-                className="flex-grow rounded-none bg-gray-800 border-gray-700 text-white"
-                required
-              />
-              <Button className="bg-primary text-primary-foreground px-8 py-3 text-lg font-light hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center rounded-none">
+          <h2 className="text-5xl font-medium mb-12">Stay Informed</h2>
+          <form className="max-w-1xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-4 justify-start">
+              <div className="flex-grow">
+                <Input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full font-medium rounded-none bg-gray-800 border-gray-700 text-white"
+                  required
+                />
+              </div>
+              <Button className="bg-secondary text-secondary-foreground px-8 py-3 text-lg font-normal hover:bg-primary/90 transition-colors duration-300 rounded-none">
                 Subscribe <ArrowRight className="ml-2" size={20} />
               </Button>
             </div>
@@ -737,7 +670,7 @@ export function EnhancedGenesisLandingPageComponent() {
               </Link>
             </div>
           </div>
-          <div className="mt-8 text-center text-sm font-light">
+          <div className="mt-8 text-center text-sm font-normal">
             © {new Date().getFullYear()} Genesis. All rights reserved.
           </div>
         </div>
